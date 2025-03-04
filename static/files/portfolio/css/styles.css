@@ -1,0 +1,95 @@
+.navbar{
+    display:flex;
+    background-color: #31596f;
+    width:100%;
+    height:100px;
+    gap:50px;
+    align-items: center;
+    justify-content: space-between; 
+    padding-right:50px;
+    margin:0;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    
+    z-index: 9999;
+    
+
+    
+ 
+    
+   
+
+
+ }
+.navbar li{
+ list-style:none;
+}
+.navbar a {
+ text-decoration:none;
+ padding:30px 40px;
+ color:whitesmoke;
+ font-family: Arial, sans-serif;
+
+
+}
+body ,html{
+ 
+
+ padding:0;
+ margin:0;
+ width: 100%;
+ overflow-x: hidden;
+ position: relative;
+ 
+}
+.logo{
+    height:100px;
+
+    align-items: center;
+
+    display: inline-block; 
+    width: auto;
+    animation:wave 1s infinite alternate ease-in-out alternate;
+    transform-origin:left center; /* Keep aspect ratio */
+    display: block;
+    margin-left: 10px;
+    
+    
+}
+@keyframes wave {
+    0% {transform: rotate(0deg); }
+    100% {transform: rotate(3deg); } 
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+ /* Ensures the logo and text are in a row */
+}
+.logo-container span {
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            color:#0a3420e8;
+        }
+.carousel-item img {
+           
+            object-fit: contain; /* Ensures the whole image is visible without cropping */
+        }
+
+   
+    /* Footer */
+    footer {
+        background-color: #31596f;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        color: white;
+        font-size: 16px;
+        position: relative;
+        bottom: 0;
+    }
+    
+    
+  

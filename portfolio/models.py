@@ -10,6 +10,15 @@ class Blogs(models.Model):
 
     title=models.CharField(max_length=250)
     description=models.TextField()
-    photos=models.ImageField(upload_to='media/', height_field=None, width_field=None, )
+    photos=models.ImageField(upload_to='blogs/', height_field=None, width_field=None, )
+    uploaddate=models.DateTimeField(auto_now=True)
+
+
+
+class Contact(models.Model):
+    name=models.CharField(max_length=250)
+    email=models.EmailField()
+    mobile=models.IntegerField()
+    message=models.CharField( max_length=500)
 
 

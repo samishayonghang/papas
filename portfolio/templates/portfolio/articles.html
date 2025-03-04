@@ -1,0 +1,69 @@
+{% extends "portfolio/index.html" %}
+{% load static %}
+
+{% block title %}Articles{% endblock title %}
+
+{% block banner %}{% endblock banner %}
+
+{% block maincontent %}
+<div class="articles-container grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+  <div class="articlemain md:col-span-2  border-2 border-gray-300 p-4  items-center justify-center">
+    <h1 class="text-center">Current Article</h1>
+    <img src="{{ recent_article.photos.url }}" class="article-image mb-3 mt-0 w-full h-auto">
+
+    <h3 class="article-title text-red-500 text-2xl font-bold mb-2 ">{{recent_article.title}}  </h3>
+    <hr>
+    <div class="articledg flex justify-between w-full">
+    <p class="article-date font-semibold mb-3  text-white rounded-lg p-2 inline-block">
+        {{ recent_article.uploaddate }}
+    </p>
+    <p class="article-gallery mb-3  rounded-lg p-2  inline-block">
+    <a href="#" class="text-white">
+    <i class="fa-solid fa-images mx-1 text-white"></i> Gallery </a>
+    </p>
+    </div>
+    <br>
+    
+    <p2 class="article-description font-small mb-2">{{recent_article.description}} </p2>
+    
+  </div> 
+  <div class="articlesub flex flex-col gap-6   border-2 border-gray-300 p-4 ">
+ {% for article in articles  %}
+    <div class="article-card bg-white dark:bg-gray-800 dark:text-white p-6 rounded-lg shadow-lg transition-transform transform duration-300 hover:scale-105  border-2 border-gray-200 bg-green-100  ">
+    <h1 class="article-title text-2xl font-bold mb-2">
+    {{article.title}}
+    <span class="text-sm text-gray-500 dark:text-gray-300">- {{article.uploaddate}}</span>
+    </h1>
+    {% if article.photos %}
+    <img src="{{article.photos.url}}" alt="Article Image" class="article-image w-full h-64 object-cover rounded-lg shadow-md transition-transform duration-300 hover:sclae-105">
+    <p class="article-description text-gray-600 dark:text-gray-300 mt-4">{{ article.description }}</p>
+    {% endif %}
+    </div>
+ {% empty %}
+    <p class="text-gray-500 text-lg">No articles available.</p>
+    
+    
+    
+    {% endfor %}
+  </div>
+  <script>
+    // Example of dark mode toggle using JavaScript
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });
+</script>
+
+
+    
+</div> 
+
+<script>
+    // Example of dark mode toggle using JavaScript
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });
+</script>
+
+{% endblock maincontent %}

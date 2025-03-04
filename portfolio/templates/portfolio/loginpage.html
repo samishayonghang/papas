@@ -1,0 +1,81 @@
+{% extends "portfolio/index.html" %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block banner %}{% endblock banner %}
+
+{% block maincontent %}
+<form action="{% url 'loginpage' %}" method="POST" enctype="multipart/form-data" id="login-form" autocomplete="off">
+    {% csrf_token %}
+    <h1 style="text-align:center; font-family:Poppins,sans-serif; color: #333; font-weight: 600;">Login here</h1>
+    <input type="text" class="rounded-md focus:ring-2 focus:ring-blue-500 hover:border-blue-500" placeholder="Enter your username here" id="username" name="username">
+    <input type="email" class="rounded-md focus:ring-2 focus:ring-blue-500 hover:border-blue-500" placeholder="Enter your email here" id="email" name="email">
+    <input type="password" class="rounded-md focus:ring-2 focus:ring-blue-500 hover:border-blue-500" placeholder="Enter your password here" id="password" name="password">
+    <button type="submit" class="w-full h-12 p-3 bg-red-500 rounded-md hover:bg-red-900">Submit</button>
+</form>
+
+<p id="message"></p>  <!-- To display success or error messages -->
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<style>
+    #login-form {
+        max-width: 600px;
+        width: 50%;
+        margin: 30px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #login-form input, #login-form button {
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    #login-form button {
+        background-color: red;
+    }
+</style>
+
+<script>
+    document.getElementById('login-form').addEventListener("submit", function(event) {
+        event.preventDefault();  // Stop normal form submission
+
+        let formData = new FormData(this);  // Collect form data
+
+        fetch("{% url 'loginpage' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}"  // CSRF token for security
+            }
+        })
+        .then(response => response.json())  // Parse the JSON response
+        .then(data => {
+            if (data.success) {
+                document.getElementById("message").innerHTML = `<span style="color:green;">${data.message}</span>`;
+                setTimeout(() => {
+                    window.location.href = "/admindashboard/";  // Redirect to admin dashboard
+                }, 1000);
+            } else {
+                document.getElementById("message").innerHTML = `<span style="color:red;">${data.message}</span>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("message").innerHTML = `<span style="color:red;">An error occurred, please try again.</span>`;
+        });
+    });
+</script>
+
+{% endblock maincontent %}

@@ -1,0 +1,49 @@
+{% extends "portfolio/index.html" %}
+{% load static %}
+
+{% block title %}Form Submission{% endblock title %}
+
+{% block banner %}{% endblock banner %}
+
+{% block maincontent %}
+<p> if you have any feedback, suggestions or criticisms regarding the work Tekraj Yonghang has been doing, we receive them with open hearts. Feel free to use the form below for that. </p>
+<form action="" method="POST" enctype="multipart/form-data" id="contact-form">
+    {% csrf_token %}
+    <h1 style="text-align:center; font-family:Poppins,sans-serif;  color: #333;  font-weight: 600; "> Leave us Message</h1>
+    <input type="text" placeholder="Enter your full name here" id="name" name="name">
+    <input type="email" placeholder="Enter your email here" id="email" name="email">
+    <input type="number" placeholder="Enter your mobile number here" id="mobile" name="mobile">
+    <textarea placeholder="Leave your message here" id="message" name="message" rows="4" cols="50"></textarea>
+    <button type="submit">Submit</button>
+</form>
+
+<style>
+    #contact-form {
+        max-width: 600px; /* Corrected to max-width */
+        width: 50%;
+        margin: 30px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #contact-form input, #contact-form textarea, #contact-form button {
+        width: 100%;
+        padding: 20px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    textarea::placeholder {
+        color: #888; /* Set placeholder color */
+        opacity: 1;  /* Ensure full opacity for visibility */
+    }
+
+    #contact-form button {
+        background-color:red;
+
+    }
+</style>
+{% endblock maincontent %}

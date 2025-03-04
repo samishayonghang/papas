@@ -1,13 +1,22 @@
 .navbar{
     display:flex;
-    background-color: #31596f;
-    width:auto;
+    background-color:#31596f;
+    width:100%;
     height:100px;
     gap:50px;
     align-items: center;
     justify-content: space-between; 
     padding-right:50px;
     margin:0;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+   
+    z-index: 9999;
+    
+
+    
  
     
    
@@ -18,28 +27,43 @@
  list-style:none;
 }
 .navbar a {
- text-decoration:none;
- padding:30px 40px;
- color:whitesmoke;
- font-family: Arial, sans-serif;
-
-
+    text-decoration: none;
+    padding: 30px 40px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold; /* Makes the text bold */
+     /* Converts text to uppercase */
 }
-body{
- margin:0;
+
+
+
+body ,html{
+ 
+
  padding:0;
+ margin:0;
+ width: 100%;
+ overflow-x: hidden;
+ position: relative;
+ 
 }
 .logo{
-    height:80px;
+    height:100px;
 
     align-items: center;
-    background-color: white;
+
     display: inline-block; 
-     width: auto; /* Keep aspect ratio */
+    width: auto;
+    animation:wave 1s infinite alternate ease-in-out alternate;
+    transform-origin:left center; /* Keep aspect ratio */
     display: block;
     margin-left: 10px;
     
     
+}
+@keyframes wave {
+    0% {transform: rotate(0deg); }
+    100% {transform: rotate(3deg); } 
 }
 
 .logo-container {
@@ -56,12 +80,21 @@ body{
            
             object-fit: contain; /* Ensures the whole image is visible without cropping */
         }
-footer {
-    
-    background-color: #31596f;
-    width: 100%;
-    margin-top: auto; 
-    text-align: center;
-    padding: 20px;
 
-}
+   
+    /* Footer */
+    footer {
+        background-color: #31596f;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        color: white;
+        font-size: 16px;
+        position: relative;
+        bottom: 0;
+    }
+    
+.article-gallery,.article-date {
+    background-color:rgb(255, 0, 0);
+   } 
+  
