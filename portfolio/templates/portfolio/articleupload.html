@@ -1,0 +1,70 @@
+{% extends "portfolio/index.html" %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block banner %}{% endblock banner %}
+
+{% block maincontent %}
+<h1 class="text-center">Create Post</h1>
+<div class="rounded-lg shadow-lg border-2 p-4">
+    <img src="#"> <span>{{username}}</span>
+    <!-- Dropdown Container -->
+    <div class="relative inline-block text-left">
+        <!-- Dropdown Button -->
+        <button type="button" id="dropdownButton" class="bg-gray-200 text-black px-4 py-2 rounded-md">
+            <i class="fas fa-globe"></i> Public ▼
+        </button>
+
+        <!-- Dropdown Menu (Hidden by default) -->
+        <div id="dropdownMenu" class="absolute hidden mt-2 w-40 bg-white border border-gray-300 rounded-md shadow-lg">
+            <!-- Menu Items -->
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Public</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Private</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Friends Only</a>
+        </div>
+    </div>
+</div>
+
+<!-- Big Box with Placeholder and Image Upload Button -->
+ <form action="{% url "adminupload" %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="bg-white border-2 p-4 rounded-lg space-y-4 mt-6">
+    <textarea name="articlewrite" placeholder="What's on your mind, Tekaraj?" class="w-full p-2 border-none outline-none bg-transparent hover:bg-transparent focus:ring-0  mb-4" rows="4"></textarea>
+
+    <div class="flex items-center space-x-4">
+        <!-- Gallery Icon for Image Upload -->
+        <label for="file-upload" class="cursor-pointer mb-4">
+            <i class="fas fa-image text-gray-500 items-center text-xl"></i> Upload Photo
+        </label>
+        <input id="file-upload"  name="articleimage" type="file" class="hidden" accept="image/*">
+
+        <!-- Optional Text or Action under -->
+        <span class="text-gray-500"></span>
+    </div>
+    <div class="mb-4">
+        <input type="text"  name="title" class="w-full"placeholder="आफ्नो शीर्षक प्रविष्ट गर्नुहोस्">
+    </div>
+    <button type="submit" class="w-full bg-red-600 rounded-lg ">POST </button>
+
+</div>
+</form>
+
+
+<script>
+    // JavaScript for Dropdown Toggle
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    dropdownButton.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+        }
+    });
+</script>
+
+{% endblock maincontent %}

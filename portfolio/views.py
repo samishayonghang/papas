@@ -49,4 +49,19 @@ def loginpage(request):
     return render(request,'portfolio/loginpage.html')
 
 def admindashboard(request):
-    return render(request,'portfolio/admindashboard.html')
+    recent_articles=Blogs.objects.all().order_by('-uploaddate').first()
+    articles=Blogs.objects.all()
+    return render(request,'portfolio/admindashboard.html',{'recent_articles':recent_articles,'articles':articles})
+
+def adminupload(request):
+    username=request.user.username
+    if request.method=="POST":
+     articlewrite=request.POST.get('articlewrite')
+     articleimage=request.FILES.get('articleimage')
+     title=request.POST.get('title')
+     Blogs.objects.create(title=title,description=articlewrite,photos=articleimage)
+     messages.success(request,"you have successfully posted article")
+     return redirect('adminupload')
+
+
+    return render(request,'portfolio/articleupload.html',{'username':username})

@@ -1,11 +1,49 @@
 {% extends "portfolio/index.html" %}
 {% load static %}
 
-{% block title %}{% endblock title %}
+{% block title %}Articles{% endblock title %}
 
 {% block banner %}{% endblock banner %}
 
 {% block maincontent %}
+<div class="articles-container grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+    
+  <div class="articlemain md:col-span-1  border-2 border-gray-300 p-4  items-center justify-center">
+    {% for article in articles  %}
+    <div class="article-card bg-white dark:bg-gray-800 dark:text-white p-6 rounded-lg shadow-lg transition-transform transform duration-300 hover:scale-105  border-2 border-gray-200 bg-green-100  ">
+    <h1 class="article-title text-2xl font-bold mb-2">
+    {{article.title}}
+    <span class="text-sm text-gray-500 dark:text-gray-300">- {{article.uploaddate}}</span>
+    </h1>
+    {% if article.photos %}
+    <img src="{{article.photos.url}}" alt="Article Image" class="article-image w-full h-64 object-cover rounded-lg shadow-md transition-transform duration-300 hover:sclae-105">
+    <p class="article-description text-gray-600 dark:text-gray-300 mt-4">{{ article.description }}</p>
+    {% endif %}
+    </div>
+ {% empty %}
+    <p class="text-gray-500 text-lg">No articles available.</p>
+    
+    
+    
+    {% endfor %}
+   
+    
+  </div> 
+  <div class="articlesub flex flex-col items-center justify-center border-2 border-gray-300 p-6 rounded-lg bg-gray-100">
+    <div class="new-article bg-blue-500 text-white p-4  border-4 border-w-3/4 gray-400 h-96 md:rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+        <a href="#" class="flex flex-col items-center gap-2">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/v4/yQ/r/74AG-EvEtBm.png" alt="Upload Icon" class="w-10 h-10">
+            <span class="text-lg font-semibold">Upload</span>
+        </a>
+    </div>
+</div>
+ 
+  </div>
+ 
 
-<h1>admin dashboard </h1>
+    
+</div> 
+
+
+
 {% endblock maincontent %}
